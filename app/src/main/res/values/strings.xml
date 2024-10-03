@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InstaDownload</string>
-    <string name="Descargar">Descargar</string>
-    <string name="Ingrese_el_link">Ingrese el link</string>
+    <string name="app_name" translatable="false">InstaDownload</string>
+    <string name="Descargar" translatable="false">Descargar</string>
+    <string name="Ingrese_el_link" translatable="false">Ingrese el link</string>
 </resources>

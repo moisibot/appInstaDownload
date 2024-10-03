@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun getVideoUrl(shortcode: String): String? = withContext(Dispatchers.IO) {
-        val url = URL("https://www.instagram.com/graphql/query/?query_hash=b3055c01b4b222b8a47dc12b090e4e64&variables={\"shortcode\":\"$shortcode\"}")
+        val url = URL("https://www.instagram.com/p/$shortcode/?__a=1&__d=dis")
         val connection = url.openConnection() as HttpURLConnection
         connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
@@ -109,9 +109,7 @@ class MainActivity : AppCompatActivity() {
             val jsonResponse = JSONObject(response.toString())
             Log.d("Instagram", "Respuesta de la API recibida")
 
-            val mediaData = jsonResponse
-                .getJSONObject("data")
-                .getJSONObject("shortcode_media")
+            val mediaData = jsonResponse.getJSONObject("graphql").getJSONObject("shortcode_media")
 
             if (mediaData.has("video_url")) {
                 val videoUrl = mediaData.getString("video_url")
